@@ -50,7 +50,6 @@ export default function Home({ usuarioLogado }: HomeProps) {
     setOrigem(destino);
     setDestino(tmp);
   }
-  console.log('teste')
 
   const trocarTipo =
     (novoTipo: TipoViagem) =>

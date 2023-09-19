@@ -40,9 +40,22 @@ const usuarioSlice = createSlice({
       state.usuarios.push(novoUsuario);
       state.usuarioLogado = novoUsuario;
     },
+    alterarUsuario: (state, action: PayloadAction<Partial<Usuario>>) => {
+      Object.assign(state, {
+        usuarioLogado: action.payload,
+      });
+    },
+    excluirUsuario: (state, action: PayloadAction<Usuario["id"]>) => {
+      const novoArrayUsuarios = state.usuarios.filter(
+        (usuario) => usuario.id !== action.payload
+      );
+      state.usuarioLogado = undefined;
+      state.usuarios = novoArrayUsuarios;
+    },
   },
 });
 
-export const { logar, deslogar, cadastrar } = usuarioSlice.actions;
+export const { logar, deslogar, cadastrar, alterarUsuario, excluirUsuario } =
+  usuarioSlice.actions;
 
 export default usuarioSlice.reducer;

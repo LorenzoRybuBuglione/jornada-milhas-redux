@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { logar as logarService } from "src/services/usuarios";
+import { usuarioExistente } from "src/services/usuarios";
 import { Usuario } from "src/types/usuario";
 import uuid from "react-native-uuid";
 import server from "assets/server";
@@ -24,7 +24,8 @@ const usuarioSlice = createSlice({
   name: "usuario",
   reducers: {
     logar: (state, action: PayloadAction<LoginPayload>) => {
-      const usuarioEncontrado = logarService(
+      const usuarioEncontrado = usuarioExistente(
+        state.usuarios,
         action.payload.emailOuCpf,
         action.payload.senha
       );
